@@ -10,7 +10,7 @@ import (
 var DB *sql.DB
 
 func ConnectDatabase() {
-	var db_detail = "root:@tcp(127.0.0.1:3306)/bangkitcell?parseTime=true"  // TAMBAHIN INI
+	var db_detail = "root:@tcp(127.0.0.1:3306)/pos_bangkit?parseTime=true"
 
 	db, err := sql.Open("mysql", db_detail)
 
@@ -19,8 +19,12 @@ func ConnectDatabase() {
 		panic(err)
 	}
 
-	fmt.Println("Database Konek")
+	err = db.Ping()
+	if err != nil {
+		fmt.Println("Database tidak konek")
+		panic(err)
+	}
 
+	fmt.Println("Database Konek")
 	DB = db
-	
 }
