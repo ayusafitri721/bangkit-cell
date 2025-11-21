@@ -39,3 +39,21 @@ func GetAllBrands(c *gin.Context) {
 		"status": 1,
 	})
 }
+
+func SetBrand(c *gin.Context) {
+	var brand model.Brand
+
+	err := c.ShouldBindJSON(&brand)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err":    err,
+			"status": http.StatusBadRequest,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"result": brand,
+	})
+}

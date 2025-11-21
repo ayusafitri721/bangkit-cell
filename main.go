@@ -14,6 +14,7 @@ func main() {
 	
 	// Brand routes
 	router.GET("/brands", controller.GetAllBrands)
+	router.POST("/brands", controller.SetBrand)
 	
 	// Device routes
 	router.GET("/devices", controller.GetAllDevices)
